@@ -17,3 +17,12 @@ function pedirDeposito() {
     return deposito;
 }
 
+function elegirMoneda() {
+    let mensaje = "Elija la moneda para su inversion:\n";
+    for (let i = 0; i < moneda.length; i++) {
+        mensaje += `${i + 1}) ${moneda[i]}\n`;
+    }
+
+    let eleccion = parseInt(prompt(mensaje));
+    
+}
