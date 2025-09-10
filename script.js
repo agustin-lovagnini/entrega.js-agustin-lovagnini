@@ -3,13 +3,13 @@ const moneda = ["Pesos", "USDT", "USDS", "BTS", "Ethereum"];
 let inversion = [0, 0, 0, 0, 0];
 
 function pedirDeposito() {
-  let deposito = parseFloat(prompt("Ingresa el monto a depositar:"));
+  let deposito = parseFloat(prompt("Ingresa el monto a depositar. Si necesitas, podes poner decimales:"));
 
   while (isNaN(deposito) || deposito <= 0) {
     let mensaje;
     if (isNaN(deposito)) {
       mensaje =
-        "No es un numero, ingresa un numero valido. Podes indicarnos con decimales";
+        "No es un numero, ingresa un numero valido. Vuelve a intentarlo:";
     } else {
       mensaje = "El numero tiene que ser mayor a 0";
     }
@@ -57,6 +57,11 @@ function mostrarResumenInversion() {
 
 function iniciarSimulador(){
   let usuario = prompt("¡Bienvenido!\n Quiero saber tu nombre, ingresa tu nombre de usuario:");
+  
+    while (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(usuario)) {
+    usuario = prompt("El nombre no puede contener numeros. Vuelve a intentarlo:");
+  }
+
   inversion = JSON.parse(sessionStorage.getItem(usuario)) || [0, 0, 0, 0, 0];
   alert(`Hola ${usuario}!`);
 
