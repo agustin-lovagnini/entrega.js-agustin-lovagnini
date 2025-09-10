@@ -11,8 +11,8 @@ Arme un simulador de inversiones donde el usuario puede:
 - Ver un resumen con el total invertido en cada moneda y en todas las monedas.
 
 ## Tecnologías
-- HTML5
-- CSS3
+- HTML
+- CSS
 - JavaScript
 
 ## Funcionalidades
@@ -23,8 +23,10 @@ Arme un simulador de inversiones donde el usuario puede:
 5. **iniciarSimulador()** → Función principal que organiza el flujo de la aplicación.
 
 ## Cómo usarlo
-1. Abrir `index.html` en un navegador.
-2. Se mostrará un cuadro de diálogo pidiendo el nombre de usuario.
-3. Ingresar el monto a invertir y seleccionar la moneda.
-4. Repetir si se desea realizar otra inversión.
-5. Al finalizar, se mostrará un resumen de todas las inversiones.
+1. Se mostrará un cuadro de diálogo pidiendo el nombre de usuario.
+2. Ingresar el monto a invertir y seleccionar la moneda.
+3. Repetir si se desea realizar otra inversión.
+4. Al finalizar, se mostrará un resumen de todas las inversiones.
+
+## Notas
+- Se guarda el historial de inversión por usuario usando `sessionStorage`.
