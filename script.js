@@ -15,7 +15,7 @@ function procesarIngreso() {
   errorNombre.textContent = "";
 
   if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(nombreInput)) {
-    errorNombre.textContent = "El nombre es incorrecto, no puede contener números.";
+    errorNombre.textContent = "El nombre es incorrecto, no puede contener números, ni caracteres especiales.";
     return;
   }
 

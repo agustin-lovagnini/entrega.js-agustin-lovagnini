@@ -18,6 +18,10 @@ ul {
     list-style: none;
 }
 
+.no-seleccionar {
+    user-select: none;
+}
+
 /* ==========================
    MENSAJES DE ERROR
 ========================== */
@@ -253,6 +257,7 @@ ul {
     padding: 15px 20px;
     margin: 10px auto;
     border-radius: 10px;
+    user-select: none;
     color: var(--color-acento);
     font-size: 1.05rem;
     border: 2px solid rgba(255, 255, 255, 0.3);
