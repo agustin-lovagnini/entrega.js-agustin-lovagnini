@@ -1,0 +1,374 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --color-principal: #BBDCFF;
+    --color-secundario: #74C4FF;
+    --color-acento: #4A9EE0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+ul {
+    list-style: none;
+}
+
+/* ==========================
+   MENSAJES DE ERROR
+========================== */
+.error {
+    color: #ff4444;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin: 10px 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: none;
+}
+
+.error:not(:empty) {
+    display: block;
+}
+
+/* ==========================
+   PANTALLAS PRINCIPALES
+========================== */
+#pantalla-inicio,
+#panel-general {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--color-principal);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: margin-left 0.3s ease;
+}
+
+/* ==========================
+   BIENVENIDA
+========================== */
+.bienvenida-contenido {
+    width: 550px;
+    max-width: 90%;
+    height: 260px;
+    background-color: var(--color-secundario);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid white;
+    gap: 5px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.6s ease-in-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bienvenida-contenido:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.bienvenida-contenido h1 {
+    padding-bottom: 10px;
+    color: white;
+}
+
+/* ==========================
+   BOTONES E INPUTS
+========================== */
+#btnIngresar,
+#nombreUsuario {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: 2px solid var(--color-principal);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#btnIngresar {
+    cursor: pointer;
+}
+
+#btnIngresar:hover {
+    background-color: var(--color-principal);
+    color: white;
+}
+
+#btnNuevaInversion {
+    margin: 20px 0 25px;
+    padding: 14px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: 2px solid var(--color-principal);
+    border-radius: 10px;
+    background: white;
+    color: var(--color-acento);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+#btnNuevaInversion:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #3d8bc7, #5db3ff);
+    color: white;
+}
+
+#btnGuardarInversion {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    color: var(--color-acento);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#btnGuardarInversion:hover {
+    transform: translateY(-2px);
+}
+
+#btnGuardarInversion:active {
+    transform: translateY(0);
+}
+
+/* ==========================
+   CONTENIDO PANEL GENERAL
+========================== */
+.contenido {
+    position: relative;
+    padding-block: 50px;
+}
+
+.contenedor-saludo {
+    background-color: var(--color-acento);
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+    height: 110px;
+    position: relative;
+    z-index: 1;
+    bottom: 0;
+    margin-bottom: -30px;
+    box-shadow: 0 8px 25px rgba(74, 158, 224, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contenedor-saludo:hover {
+    box-shadow: 0 12px 35px rgba(74, 158, 224, 0.6);
+}
+
+#saludo {
+    margin: 20px;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.contenedor-informacion {
+    width: 500px;
+    min-height: 600px;
+    position: relative;
+    padding-bottom: 50px;
+    z-index: 2;
+    background-color: var(--color-secundario);
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.contenedor-informacion h3 {
+    color: white;
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================
+   FORMULARIO DE INVERSION
+========================== */
+#formInversion {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 25px;
+    border-radius: 12px;
+    margin: 0 auto 30px;
+    max-width: 400px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    animation: fadeInDown 0.4s ease;
+}
+
+#monto,
+#moneda {
+    width: 100%;
+    padding: 14px 18px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#monto:focus,
+#moneda:focus {
+    border-color: white;
+    background: white;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    transform: scale(1.02);
+}
+
+#moneda {
+    cursor: pointer;
+}
+
+.linea-separadora {
+    border: none;
+    border-top: 2px solid rgba(255, 255, 255, 0.5);
+    margin: 15px 0;
+}
+
+/* ==========================
+   LISTA DE INVERSIONES
+========================== */
+#listaInversiones li {
+    max-width: 350px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px 20px;
+    margin: 10px auto;
+    border-radius: 10px;
+    color: var(--color-acento);
+    font-size: 1.05rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease;
+}
+
+#listaInversiones li:hover {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.total-negrita {
+    font-weight: bold;
+}
+
+/* ==========================
+   SIDEBAR
+========================== */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 100vh;
+    background-color: #22496A;
+    color: white;
+    padding: 20px 0;
+    box-sizing: border-box;
+    transition: width 0.3s ease;
+    overflow: hidden;
+    display: block;
+}
+
+.sidebar.expanded {
+    width: 200px;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.sidebar ul li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+    cursor: pointer;
+    position: relative;
+    padding-left: 19px;
+}
+
+.sidebar ul li span.material-icons {
+    margin-right: 0;
+    font-size: 22px;
+}
+
+.sidebar .item-text {
+    opacity: 0;
+    visibility: hidden;
+    white-space: nowrap;
+    margin-left: 10px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sidebar.expanded .item-text {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sidebar ul li:hover a,
+.sidebar ul li:hover span.material-icons {
+    color: #bcbcbc;
+}
+
+#toggleSidebar,
+#closeSidebar {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 28px;
+}
+
+/* ==========================
+   ANIMACIONES
+========================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

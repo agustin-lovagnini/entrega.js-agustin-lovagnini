@@ -1,13 +1,83 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador de Inversiones</title>
     <link rel="stylesheet" href="estilos.css">
     <script src="script.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
 </head>
+
 <body>
-    
+    <!-- Pantalla inicial -->
+    <section id="pantalla-inicio">
+        <div class="bienvenida-contenido">
+            <h1>¡Bienvenido al Simulador!</h1>
+            <input type="text" id="nombreUsuario" placeholder="Ingresá tu nombre">
+            <p id="errorNombre" class="error"></p>
+            <button id="btnIngresar">Ingresar</button>
+        </div>
+    </section>
+
+    <!-- Panel general -->
+    <section id="panel-general" style="display: none;">
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar" style="display: none;">
+            <div class="sidebar-header">
+                <button id="toggleSidebar" class="material-icons">double_arrow</button>
+                <button id="closeSidebar" class="material-icons" style="display: none;">close</button>
+            </div>
+            <ul>
+                <li>
+                    <span class="material-icons">home</span>
+                    <a href="#" id="btnInicio" class="item-text">Inicio</a>
+                </li>
+                <li>
+                    <span class="material-icons">add_circle</span>
+                    <a href="#" id="btnNuevaInversionSidebar" class="item-text">Nueva Inversión</a>
+                </li>
+                <li>
+                    <span class="material-icons">bar_chart</span>
+                    <a href="#" id="btnVerInversiones" class="item-text">Ver Inversiones</a>
+                </li>
+                <li>
+                    <span class="material-icons">logout</span>
+                    <a href="#" id="btnCerrarSesion" class="item-text">Cerrar Sesión</a>
+                </li>
+            </ul>
+        </aside>
+
+        <div class="contenido">
+            <div class="contenedor-saludo">
+                <h2 id="saludo"></h2>
+            </div>
+
+            <div class="contenedor-informacion">
+                <button id="btnNuevaInversion">Hacer nueva inversión</button>
+
+                <!-- Formulario de inversión -->
+                <div id="formInversion" style="display: none;">
+                    <input type="number" id="monto" placeholder="Monto a invertir">
+                    <select id="moneda">
+                        <option value="0">Pesos</option>
+                        <option value="1">USDT</option>
+                        <option value="2">USDS</option>
+                        <option value="3">BTS</option>
+                        <option value="4">Ethereum</option>
+                    </select>
+                    <p id="errorMonto" class="error"></p>
+                    <hr class="linea-separadora">
+                    <button id="btnGuardarInversion">Guardar inversión</button>
+                </div>
+
+                <!-- Resumen -->
+                <h3>Tus inversiones:</h3>
+                <ul id="listaInversiones"></ul>
+            </div>
+        </div>
+    </section>
 </body>
+
 </html>
