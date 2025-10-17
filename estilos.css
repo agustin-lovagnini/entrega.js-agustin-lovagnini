@@ -156,6 +156,12 @@ ul {
 .contenido {
     position: relative;
     padding-block: 50px;
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+}
+
+#panel-general.sidebar-open .contenido {
+    margin-left: 0;
 }
 
 .contenedor-saludo {
@@ -290,18 +296,78 @@ ul {
     transition: width 0.3s ease;
     overflow: hidden;
     display: block;
+    z-index: 1000;
 }
 
 .sidebar.expanded {
     width: 200px;
 }
 
-.sidebar-header {
+/* ==========================
+   LOGO SA
+========================== */
+.logo-sa {
+    margin-top: 30px;
+    font-size: 28px;
+    font-weight: 900;
+    color: white;
+    text-align: center;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    transition: font-size 0.3s ease, height 0.3s ease, margin-bottom 0.3s ease;
+    user-select: none;
+    letter-spacing: 3px;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     padding: 0 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid;
+    border-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent) 1;
 }
 
+.sidebar.expanded .logo-sa {
+    font-size: 36px;
+    height: 80px;
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+}
+
+/* ==========================
+   SIDEBAR HEADER
+========================== */
+.sidebar-header {
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 1001;
+}
+
+#toggleSidebar,
+#closeSidebar {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    font-size: 24px;
+    transition: all 0.3s ease;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#toggleSidebar:hover,
+#closeSidebar:hover {
+    color: white;
+    transform: scale(1.2);
+}
+
+/* ==========================
+   SIDEBAR MENU
+========================== */
 .sidebar ul {
     list-style: none;
     padding: 0;
@@ -342,15 +408,6 @@ ul {
 .sidebar ul li:hover a,
 .sidebar ul li:hover span.material-icons {
     color: #bcbcbc;
-}
-
-#toggleSidebar,
-#closeSidebar {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 28px;
 }
 
 /* ==========================

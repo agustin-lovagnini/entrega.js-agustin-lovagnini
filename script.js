@@ -54,9 +54,17 @@ document.getElementById("btnNuevaInversion").addEventListener("click", () => {
     return;
   }
   
-  document.getElementById("moneda").value = "0";
-  document.getElementById("monto").value = "";
-  formInversion.style.display = "block";
+  const formularioActualmentVisible = formInversion.style.display === "block";
+  
+  if (formularioActualmentVisible) {
+    // Si está visible, lo cerramos
+    formInversion.style.display = "none";
+  } else {
+    // Si está oculto, lo abrimos y limpiamos
+    document.getElementById("moneda").value = "0";
+    document.getElementById("monto").value = "";
+    formInversion.style.display = "block";
+  }
 });
 
 // Formatear el input de monto mientras se escribe
@@ -69,6 +77,7 @@ document.getElementById("monto").addEventListener("input", (e) => {
   }
 });
 
+// Guardar nueva inversión
 document.getElementById("btnGuardarInversion").addEventListener("click", () => {
   const montoInput = document.getElementById("monto").value;
   const monto = parseFloat(montoInput.replace(/[^\d]/g, ""));
@@ -94,16 +103,34 @@ document.getElementById("btnGuardarInversion").addEventListener("click", () => {
     return;
   }
 
-  const posicionNum = parseInt(posicion);
-  inversion[posicionNum] += monto;
-  localStorage.setItem(usuario, JSON.stringify(inversion));
+  // Alerta de confirmación usando SweetAlert2
+  Swal.fire({
+    title: "¿Guardar inversión?",
+    text: `${moneda[parseInt(posicion)]}: ${monto.toLocaleString('es-ES', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`,
+    showDenyButton: true,
+    showCancelButton: false,
+    confirmButtonText: "Guardar",
+    denyButtonText: `Cancelar`,
+    icon: "question"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Si confirma, guardar la inversión
+      const posicionNum = parseInt(posicion);
+      inversion[posicionNum] += monto;
+      localStorage.setItem(usuario, JSON.stringify(inversion));
 
-  formInversion.style.display = "none";
-  // Limpiar los inputs
-  document.getElementById("monto").value = "";
-  document.getElementById("moneda").value = "0";
+      formInversion.style.display = "none";
+      document.getElementById("monto").value = "";
+      document.getElementById("moneda").value = "0";
 
-  mostrarResumenInversion();
+      mostrarResumenInversion();
+
+      Swal.fire("¡Guardado!", "Tu inversión se guardó correctamente", "success");
+    } else if (result.isDenied) {
+      // Si cancela, solo cierra el alert y deja el formulario abierto
+      Swal.fire("Cancelado", "Puedes modificar tu inversión", "info");
+    }
+  });
 });
 
 function mostrarResumenInversion() {

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Simulador de Inversiones</title>
     <link rel="stylesheet" href="estilos.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Biblioteca SweetAlert2 -->
     <script src="script.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
 </head>
@@ -13,7 +14,7 @@
     <!-- Pantalla inicial -->
     <section id="pantalla-inicio">
         <div class="bienvenida-contenido">
-            <h1>¡Bienvenido al Simulador!</h1>
+            <h1>¡Bienvenido a SA, simulador!</h1>
             <input type="text" id="nombreUsuario" placeholder="Ingresá tu nombre">
             <p id="errorNombre" class="error"></p>
             <button id="btnIngresar">Ingresar</button>
@@ -29,6 +30,7 @@
                 <button id="toggleSidebar" class="material-icons">double_arrow</button>
                 <button id="closeSidebar" class="material-icons" style="display: none;">close</button>
             </div>
+            <div class="logo-sa">SA</div> <!-- Logo con las iniciales "SA" (Seguimiento de Ahorro) simplifique para poner un nombre a la pagina -->
             <ul>
                 <li>
                     <span class="material-icons">home</span>
