@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>Simulador de Inversiones</title>
     <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"> <!-- Estilos Toastify -->
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script> <!-- Biblioteca Toastify -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Biblioteca SweetAlert2 -->
     <script src="script.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
@@ -30,7 +32,7 @@
                 <button id="toggleSidebar" class="material-icons">double_arrow</button>
                 <button id="closeSidebar" class="material-icons" style="display: none;">close</button>
             </div>
-            <div class="logo-sa">SA</div> <!-- Logo con las iniciales "SA" (Seguimiento de Ahorro) simplifique para poner un nombre a la pagina -->
+            <div class="logo-sa">SA</div>
             <ul>
                 <li>
                     <span class="material-icons">home</span>
@@ -52,31 +54,64 @@
         </aside>
 
         <div class="contenido">
-            <div class="contenedor-saludo">
-                <h2 id="saludo" class="no-seleccionar"></h2>
-            </div>
-
-            <div class="contenedor-informacion">
-                <button id="btnNuevaInversion">Hacer nueva inversión</button>
-
-                <!-- Formulario de inversión -->
-                <div id="formInversion" style="display: none;">
-                    <input type="text" id="monto" placeholder="Monto a invertir">
-                    <select id="moneda">
-                        <option value="0">Pesos</option>
-                        <option value="1">USDT</option>
-                        <option value="2">USDS</option>
-                        <option value="3">BTS</option>
-                        <option value="4">Ethereum</option>
-                    </select>
-                    <p id="errorMonto" class="error"></p>
-                    <hr class="linea-separadora">
-                    <button id="btnGuardarInversion">Guardar inversión</button>
+            <!-- Saludo centrado arriba -->
+            <div class="contenedor-saludo-saldo">
+                <div class="contenedor-saludo">
+                    <h2 id="saludo" class="no-seleccionar"></h2>
                 </div>
 
-                <!-- Resumen -->
-                <h3 class="no-seleccionar">Tus inversiones:</h3>
-                <ul id="listaInversiones"></ul>
+                <div class="contenedor-saldo">
+                    <p class="texto-saldo">Tu saldo en pesos es:</p>
+                    <p class="monto-saldo" id="saldoPesos">$ 0,00</p>
+                </div>
+            </div>
+
+            <!-- Dos contenedores lado a lado -->
+            <div class="contenedor-principal">
+                <!-- Contenedor izquierdo: Formulario -->
+                <div class="contenedor-izquierdo">
+                    <h3>Movimientos</h3>
+
+                    <!-- INVERTIR -->
+                    <button id="btnNuevaInversion">Hacer nueva inversión</button>
+                    <!-- Formulario de inversión -->
+                    <div id="formInversion">
+                        <input type="text" id="monto" placeholder="Monto a invertir" inputmode="numeric"
+                            pattern="[0-9]*">
+                        <select id="moneda">
+                            <option value="0">USDT</option>
+                            <option value="1">USDS</option>
+                            <option value="2">BTS</option>
+                            <option value="3">Ethereum</option>
+                        </select>
+                        <p id="errorMonto" class="error"></p>
+                        <hr class="linea-separadora">
+                        <button id="btnGuardarInversion">Guardar inversión</button>
+                    </div>
+
+                    <!-- RETIRAR DINERO -->
+                    <button id="btnRetirar">Retirar dinero</button>
+                    <!-- Formulario de retiro -->
+                    <div id="formRetiro">
+                        <input type="text" id="montoRetiro" placeholder="Monto a retirar" inputmode="numeric"
+                            pattern="[0-9]*">
+                        <select id="monedaRetiro">
+                            <option value="0">USDT</option>
+                            <option value="1">USDS</option>
+                            <option value="2">BTS</option>
+                            <option value="3">Ethereum</option>
+                        </select>
+                        <p id="errorMontoRetiro" class="error"></p>
+                        <hr class="linea-separadora">
+                        <button id="btnGuardarRetiro">Confirmar retiro</button>
+                    </div>
+                </div>
+
+                <!-- Contenedor derecho: Resumen -->
+                <div class="contenedor-derecho">
+                    <h3>Tus inversiones</h3>
+                    <ul id="listaInversiones"></ul>
+                </div>
             </div>
         </div>
     </section>

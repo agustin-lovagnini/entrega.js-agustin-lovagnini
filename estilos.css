@@ -10,6 +10,10 @@
     --color-acento: #4A9EE0;
 }
 
+html {
+    overflow-y: scroll;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -108,10 +112,12 @@ ul {
     color: white;
 }
 
-#btnNuevaInversion {
-    margin: 20px 0 25px;
-    padding: 14px 30px;
-    font-size: 1.1rem;
+#btnNuevaInversion,
+#btnRetirar {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 12px 25px;
+    font-size: 1rem;
     font-weight: 600;
     border: 2px solid var(--color-principal);
     border-radius: 10px;
@@ -122,14 +128,23 @@ ul {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-#btnNuevaInversion:hover {
+#btnNuevaInversion:hover,
+#btnRetirar:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     background: linear-gradient(135deg, #3d8bc7, #5db3ff);
     color: white;
 }
 
-#btnGuardarInversion {
+#btnNuevaInversion.active,
+#btnRetirar.active {
+    background: linear-gradient(135deg, #3d8bc7, #5db3ff);
+    color: white;
+    box-shadow: 0 0 20px rgba(74, 158, 224, 0.6);
+}
+
+#btnGuardarInversion,
+#btnGuardarRetiro {
     width: 100%;
     padding: 12px;
     font-size: 1rem;
@@ -142,11 +157,13 @@ ul {
     transition: all 0.3s ease;
 }
 
-#btnGuardarInversion:hover {
+#btnGuardarInversion:hover,
+#btnGuardarRetiro:hover {
     transform: translateY(-2px);
 }
 
-#btnGuardarInversion:active {
+#btnGuardarInversion:active,
+#btnGuardarRetiro:active {
     transform: translateY(0);
 }
 
@@ -156,12 +173,35 @@ ul {
 .contenido {
     position: relative;
     padding-block: 50px;
-    margin-left: 0;
+    margin-left: 60px;
     transition: margin-left 0.3s ease;
+    width: calc(100% - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-#panel-general.sidebar-open .contenido {
-    margin-left: 0;
+.contenido.sidebar-expanded {
+    margin-left: 200px;
+    width: calc(100% - 200px);
+}
+
+.contenedor-saludo-saldo {
+    width: 90%;
+    max-width: 1000px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(74, 158, 224, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: visible;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.contenedor-saludo-saldo:hover {
+    box-shadow: 0 12px 35px rgba(74, 158, 224, 0.6);
+    transform: translateY(-3px);
 }
 
 .contenedor-saludo {
@@ -169,17 +209,15 @@ ul {
     display: flex;
     justify-content: center;
     border-radius: 15px;
-    height: 110px;
+    width: 100%;
+    max-width: none;
+    box-shadow: none;
+    transition: none;
+    padding: 0;
+    order: -1;
+    margin-bottom: -20px;
     position: relative;
-    z-index: 1;
-    bottom: 0;
-    margin-bottom: -30px;
-    box-shadow: 0 8px 25px rgba(74, 158, 224, 0.4);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.contenedor-saludo:hover {
-    box-shadow: 0 12px 35px rgba(74, 158, 224, 0.6);
+    z-index: 2;
 }
 
 #saludo {
@@ -190,39 +228,105 @@ ul {
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-.contenedor-informacion {
-    width: 500px;
-    min-height: 600px;
-    position: relative;
-    padding-bottom: 50px;
-    z-index: 2;
-    background-color: var(--color-secundario);
-    border-radius: 10px;
+.contenedor-saldo {
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    padding: 35px 20px 20px;
+    width: 100%;
+    max-width: none;
+    box-shadow: none;
     text-align: center;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+    align-items: center;
+    gap: 15px;
 }
 
-.contenedor-informacion h3 {
-    color: white;
-    font-size: 1.5rem;
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+.texto-saldo {
+    color: var(--color-acento);
+    font-size: 1.95rem;
+    font-weight: 700;
+}
+
+.monto-saldo {
+    color: var(--color-acento);
+    font-size: 1.8rem;
+    font-weight: 400;
 }
 
 /* ==========================
-   FORMULARIO DE INVERSION
+   CONTENEDORES DE CONTENIDO
 ========================== */
-#formInversion {
+.contenedor-principal {
+    display: flex;
+    gap: 30px;
+    width: 90%;
+    max-width: 1200px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 30px 0px;
+}
+
+.contenedor-izquierdo,
+.contenedor-derecho {
+    background-color: var(--color-secundario);
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    flex: 1;
+    min-width: 300px;
+    max-width: 450px;
+    height: fit-content;
+}
+
+.contenedor-izquierdo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contenedor-izquierdo h3,
+.contenedor-derecho h3 {
+    color: white;
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* ==========================
+   FORMULARIO DE INVERSIÓN Y RETIRO
+========================== */
+#formInversion,
+#formRetiro {
     background: rgba(255, 255, 255, 0.08);
-    padding: 25px;
     border-radius: 12px;
-    margin: 0 auto 30px;
-    max-width: 400px;
     border: 2px solid rgba(255, 255, 255, 0.2);
-    animation: fadeInDown 0.4s ease;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: top;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+#formInversion.visible,
+#formRetiro.visible {
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
+    padding: 25px;
+    margin-bottom: 30px;
 }
 
 #monto,
-#moneda {
+#moneda,
+#montoRetiro,
+#monedaRetiro {
     width: 100%;
     padding: 14px 18px;
     margin: 10px 0;
@@ -237,14 +341,17 @@ ul {
 }
 
 #monto:focus,
-#moneda:focus {
+#moneda:focus,
+#montoRetiro:focus,
+#monedaRetiro:focus {
     border-color: white;
     background: white;
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
     transform: scale(1.02);
 }
 
-#moneda {
+#moneda,
+#monedaRetiro {
     cursor: pointer;
 }
 
@@ -258,10 +365,10 @@ ul {
    LISTA DE INVERSIONES
 ========================== */
 #listaInversiones li {
-    max-width: 350px;
+    max-width: 100%;
     background: rgba(255, 255, 255, 0.95);
     padding: 15px 20px;
-    margin: 10px auto;
+    margin: 10px 0;
     border-radius: 10px;
     user-select: none;
     color: var(--color-acento);
@@ -269,6 +376,7 @@ ul {
     border: 2px solid rgba(255, 255, 255, 0.3);
     transition: all 0.3s ease;
     animation: fadeIn 0.5s ease;
+    text-align: center;
 }
 
 #listaInversiones li:hover {
@@ -303,9 +411,6 @@ ul {
     width: 200px;
 }
 
-/* ==========================
-   LOGO SA
-========================== */
 .logo-sa {
     margin-top: 30px;
     font-size: 28px;
@@ -329,13 +434,10 @@ ul {
 .sidebar.expanded .logo-sa {
     font-size: 36px;
     height: 80px;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
     margin-bottom: 30px;
 }
 
-/* ==========================
-   SIDEBAR HEADER
-========================== */
 .sidebar-header {
     position: absolute;
     top: 12px;
@@ -365,9 +467,6 @@ ul {
     transform: scale(1.2);
 }
 
-/* ==========================
-   SIDEBAR MENU
-========================== */
 .sidebar ul {
     list-style: none;
     padding: 0;
@@ -432,5 +531,21 @@ ul {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+@media (max-width: 900px) {
+    .contenedor-principal {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contenedor-izquierdo,
+    .contenedor-derecho {
+        width: 100%;
+        max-width: none;
     }
 }
