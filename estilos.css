@@ -26,9 +26,8 @@ ul {
     user-select: none;
 }
 
-/* ==========================
-   MENSAJES DE ERROR
-========================== */
+/*!     ------ MENSAJES DE ERROR ------     */
+
 .error {
     color: #ff4444;
     background: rgba(255, 255, 255, 0.9);
@@ -44,9 +43,8 @@ ul {
     display: block;
 }
 
-/* ==========================
-   PANTALLAS PRINCIPALES
-========================== */
+/*!     ------ PANTALLAS PRINCIPALES ------      */
+
 #pantalla-inicio,
 #panel-general {
     width: 100%;
@@ -58,9 +56,8 @@ ul {
     transition: margin-left 0.3s ease;
 }
 
-/* ==========================
-   BIENVENIDA
-========================== */
+/*!     ------ BIENVENIDA ------      */
+
 .bienvenida-contenido {
     width: 550px;
     max-width: 90%;
@@ -90,9 +87,7 @@ ul {
     color: white;
 }
 
-/* ==========================
-   BOTONES E INPUTS
-========================== */
+/*!     ------ BOTONES E INPUT ------      */
 #btnIngresar,
 #nombreUsuario {
     padding: 10px;
@@ -113,8 +108,8 @@ ul {
 }
 
 #btnNuevaInversion,
-#btnRetirar {
-    width: 100%;
+#btnRetirar,
+#btnCargarSaldo {
     margin-bottom: 15px;
     padding: 12px 25px;
     font-size: 1rem;
@@ -128,8 +123,18 @@ ul {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+#btnNuevaInversion,
+#btnRetirar {
+    width: 100%;
+}
+
+#btnCargarSaldo {
+    width: 25%;
+}
+
 #btnNuevaInversion:hover,
-#btnRetirar:hover {
+#btnRetirar:hover,
+#btnCargarSaldo:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     background: linear-gradient(135deg, #3d8bc7, #5db3ff);
@@ -167,9 +172,8 @@ ul {
     transform: translateY(0);
 }
 
-/* ==========================
-   CONTENIDO PANEL GENERAL
-========================== */
+/*!     ------ CONTENIDO GLOBAL ------      */
+
 .contenido {
     position: relative;
     padding-block: 50px;
@@ -232,7 +236,8 @@ ul {
     background-color: white;
     border-radius: 15px;
     display: flex;
-    padding: 35px 20px 20px;
+    flex-direction: column;
+    padding: 35px 20px 25px;
     width: 100%;
     max-width: none;
     box-shadow: none;
@@ -240,7 +245,6 @@ ul {
     position: relative;
     z-index: 1;
     align-items: center;
-    gap: 15px;
 }
 
 .texto-saldo {
@@ -255,9 +259,13 @@ ul {
     font-weight: 400;
 }
 
-/* ==========================
-   CONTENEDORES DE CONTENIDO
-========================== */
+#btnCargarSaldo {
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+/*!     ------ CCONTENIDO DE LOS BLOQUES (BOTONES E INVERSIONES) ------      */
+
 .contenedor-principal {
     display: flex;
     gap: 30px;
@@ -295,9 +303,6 @@ ul {
     text-align: center;
 }
 
-/* ==========================
-   FORMULARIO DE INVERSIÓN Y RETIRO
-========================== */
 #formInversion,
 #formRetiro {
     background: rgba(255, 255, 255, 0.08);
@@ -361,9 +366,7 @@ ul {
     margin: 15px 0;
 }
 
-/* ==========================
-   LISTA DE INVERSIONES
-========================== */
+/*!     ------ LISTA DE INVERSIONES ------      */
 #listaInversiones li {
     max-width: 100%;
     background: rgba(255, 255, 255, 0.95);
@@ -388,9 +391,7 @@ ul {
     font-weight: bold;
 }
 
-/* ==========================
-   SIDEBAR
-========================== */
+/*!     ------ SIDEBAR ------      */
 .sidebar {
     position: fixed;
     top: 0;
@@ -509,9 +510,123 @@ ul {
     color: #bcbcbc;
 }
 
-/* ==========================
-   ANIMACIONES
-========================== */
+/*!     ------ HISTORIAL DE TRANSACCIONES ------      */
+
+#historialSection {
+    width: 90%;
+    max-width: 1000px;
+    padding: 30px;
+    background-color: var(--color-secundario);
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    animation: fadeIn 0.5s ease;
+}
+
+.historial-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.historial-header h2 {
+    color: white;
+    font-size: 1.8rem;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+}
+
+#btnVolverInicio {
+    padding: 12px 25px;
+    background: white;
+    color: var(--color-acento);
+    border: 2px solid var(--color-principal);
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+#btnVolverInicio:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, #3d8bc7, #5db3ff);
+    color: white;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.lista-historial {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.transaccion-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(74,158,224,0.2);
+    transition: all 0.3s ease;
+}
+
+.transaccion-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(74,158,224,0.3);
+}
+
+.transaccion-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.transaccion-icono {
+    font-size: 2rem;
+}
+
+.transaccion-detalle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.transaccion-descripcion {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--color-acento);
+}
+
+.transaccion-fecha {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.transaccion-monto {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.transaccion-monto.positivo {
+    color: #28a745; 
+}
+
+.transaccion-monto.negativo {
+    color: #dc3545; 
+}
+
+.sin-transacciones {
+    text-align: center;
+    color: white;
+    font-size: 1.2rem;
+    padding: 40px;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -534,9 +649,6 @@ ul {
     }
 }
 
-/* ==========================
-   RESPONSIVE
-========================== */
 @media (max-width: 900px) {
     .contenedor-principal {
         flex-direction: column;

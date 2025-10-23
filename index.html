@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <title>Simulador de Inversiones</title>
     <link rel="stylesheet" href="estilos.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"> <!-- Estilos Toastify -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <!-- Estilos Toastify -->
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script> <!-- Biblioteca Toastify -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Biblioteca SweetAlert2 -->
     <script src="script.js" defer></script>
@@ -43,8 +44,8 @@
                     <a href="#" id="btnNuevaInversionSidebar" class="item-text">Nueva Inversión</a>
                 </li>
                 <li>
-                    <span class="material-icons">bar_chart</span>
-                    <a href="#" id="btnVerInversiones" class="item-text">Ver Inversiones</a>
+                    <span class="material-icons">history</span>
+                    <a href="#" id="btnVerHistorial" class="item-text">Ver Historial</a>
                 </li>
                 <li>
                     <span class="material-icons">logout</span>
@@ -63,6 +64,7 @@
                 <div class="contenedor-saldo">
                     <p class="texto-saldo">Tu saldo en pesos es:</p>
                     <p class="monto-saldo" id="saldoPesos">$ 0,00</p>
+                    <button id="btnCargarSaldo">Ingresar dinero</button>
                 </div>
             </div>
 
@@ -112,6 +114,15 @@
                     <h3>Tus inversiones</h3>
                     <ul id="listaInversiones"></ul>
                 </div>
+            </div>
+
+            <!-- Sección Historial de Transacciones -->
+            <div id="historialSection" style="display: none;">
+                <div class="historial-header">
+                    <h2>Historial de Transacciones</h2>
+                    <button id="btnVolverInicio" onclick="volverAlInicio()">Volver</button>
+                </div>
+                <div id="listaHistorial" class="lista-historial"></div>
             </div>
         </div>
     </section>
