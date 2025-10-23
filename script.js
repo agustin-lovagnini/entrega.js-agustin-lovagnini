@@ -11,6 +11,22 @@ const listaInversiones = document.getElementById("listaInversiones");
 const formInversion = document.getElementById("formInversion");
 const formRetiro = document.getElementById("formRetiro");
 
+// Mostrar pantalla de inicio al cargar la página
+window.addEventListener('load', () => {
+  pantallaInicio.style.display = "flex";
+  panelGeneral.style.display = "none";
+  document.getElementById("sidebar").style.display = "none";
+  
+  const historialSection = document.getElementById("historialSection");
+  if (historialSection) {
+    historialSection.style.display = "none";
+  }
+  
+  const contenedorIzquierdo = document.querySelector(".contenedor-izquierdo");
+  const contenedorDerecho = document.querySelector(".contenedor-derecho");
+  if (contenedorIzquierdo) contenedorIzquierdo.style.display = "block";
+  if (contenedorDerecho) contenedorDerecho.style.display = "block";
+});
 
 // integrando JSON de historial de transacciones
 async function cargarTransaccionesJSON() {
@@ -535,6 +551,8 @@ document.getElementById("btnCerrarSesion").addEventListener("click", () => {
   document.getElementById("sidebar").style.display = "none";
   usuario = '';
   inversion = [0, 0, 0, 0];
+  saldoPesos = 0;
+  transacciones = [];
 
   // mostrar pantalla de inicio
   pantallaInicio.style.display = "flex";
@@ -548,6 +566,8 @@ document.getElementById("btnCerrarSesion").addEventListener("click", () => {
   formRetiro.classList.remove("visible");
   document.getElementById("btnNuevaInversion").classList.remove("active");
   document.getElementById("btnRetirar").classList.remove("active");
+
+  volverAlInicio();
 });
 
 //!     ------ ESTA PARTE ES PARA DARLE LA ANIMACION AL SIDEBAR CUANDO SE EXPANDE O CIERRA ------
