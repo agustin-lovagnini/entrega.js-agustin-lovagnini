@@ -1,38 +1,48 @@
-# Entregable2 - Simulador de Inversiones - CODERHOUSE
+# Entregable Final - Simulador de Inversiones (SA) - Coderhouse
 
 ## Autor
 Agustín Varela Alberto Lovagnini
 
-## Descripción
-Actualización del simulador de inversiones donde el usuario puede:
-- Ingresar su nombre desde la pantalla de inicio.
-- Elegir la moneda en la que desea invertir desde un formulario en la web.
-- Depositar un monto para la inversión.
-- Ver un resumen actualizado con el total invertido en cada moneda y el total general.
-- Guardar sus inversiones por usuario en `localStorage` para mantener los datos aunque se cierre la página.
-- Navegar y abrir el formulario desde un botón central o desde el sidebar.
-- Cerrar sesión y limpiar la información para otro usuario.
+## 🚀 Descripción del Proyecto
 
-## Tecnologías
-- HTML
-- CSS
-- JavaScript (DOM, Eventos, LocalStorage)
+Simulador interactivo de inversiones que gestiona el ciclo completo de movimientos financieros para un usuario: **Depósito**, **Inversión**, **Retiro** y **Visualización de Historial**. La aplicación utiliza persistencia de datos y consume información estática de forma asíncrona.
 
-## Funcionalidades
-1. **procesarIngreso()** → Valida y capitaliza el nombre del usuario, recupera inversiones previas de `localStorage`, y muestra la interfaz principal.
-2. **mostrarResumenInversion()** → Muestra dinámicamente en el DOM la lista de inversiones y el total general.
-3. **Guardar inversión** → Captura el monto y la moneda desde el formulario, valida el ingreso, actualiza `localStorage` y refresca el resumen.
-4. **Cerrar sesión** → Limpia los datos actuales y vuelve a la pantalla de inicio.
-5. **Sidebar expandible** → Permite abrir/cerrar el menú lateral, con botones que replican la funcionalidad del contenido principal.
-6. **Validaciones de entradas** → Monto positivo y nombre sin números, con mensajes de error visibles en la interfaz.
+## 🛠 Tecnologías Utilizadas
 
-## Cómo usarlo
-1. Ingresar el nombre en la pantalla de inicio y presionar "Ingresar" o Enter.
-2. Hacer clic en "Hacer nueva inversión" o usar el botón del sidebar para abrir el formulario.
-3. Ingresar el monto y seleccionar la moneda.
-4. Presionar "Guardar inversión" para actualizar el resumen.
-5. Repetir para más inversiones si se desea.
-6. Cerrar sesión para limpiar datos y permitir que otro usuario ingrese.
+- **HTML5:** Estructura de la aplicación.
+- **CSS3:** Estilos y diseño responsivo.
+- **JavaScript (ES6+):** Lógica de negocio, manipulación del DOM y persistencia de datos.
+- **Librerías externas (CDN):**
+    - **SweetAlert2:** Para diálogos de confirmación y mensajes de alerta (`Swal.fire`).
+    - **Toastify:** Para notificaciones informativas no bloqueantes (`Toastify`).
 
-## Notas
-- Las inversiones se guardan por usuario usando `localStorage`.
+## ✨ Funcionalidades Clave
+
+### A. Persistencia y Validación
+
+1.  **Inicio de Sesión:** Valida y capitaliza el nombre del usuario, cargando automáticamente su saldo, inversiones y historial guardados en `localStorage`.
+2.  **Validaciones robustas:** Comprueba que los montos sean positivos y que el saldo disponible sea suficiente antes de confirmar una inversión o retiro.
+3.  **Persistencia de Datos:** El estado completo del usuario (saldo, inversiones y transacciones) se guarda en `localStorage` y se recupera al volver a iniciar sesión.
+
+### B. Movimientos Financieros
+
+4.  **Depósito de Saldo:** Permite al usuario ingresar dinero ("Pesos ARS") en su cuenta, actualizando el saldo y registrando la transacción.
+5.  **Inversión:** Permite transferir dinero del saldo en Pesos ARS a una de las cuatro criptomonedas predefinidas (`USDT`, `USDS`, `BTS`, `Ethereum`).
+6.  **Retiro:** Permite transferir fondos de vuelta de una inversión específica al saldo en Pesos ARS.
+
+### C. Manejo de la Interfaz y Datos
+
+7.  **Resumen Dinámico:** Muestra en tiempo real el saldo en Pesos ARS y el detalle de las inversiones por moneda (monto y total general).
+8.  **Historial de Transacciones:**
+    - Carga datos iniciales desde un archivo **JSON externo** (`./json/historial-transacciones.json`) utilizando `fetch` de forma **asíncrona**.
+    - Registra y muestra todas las transacciones (depósitos, inversiones y retiros) con fecha, monto y tipo de operación.
+9.  **Navegación:** Implementación de un **Sidebar expandible** que permite acceder a las funciones principales (Inicio, Inversión, Historial y Cerrar Sesión).
+
+## 💡 Cómo Usarlo
+
+1.  **Ingreso:** En la pantalla de inicio, ingresa tu nombre y presiona **"Ingresar"**.
+2.  **Depositar:** Haz clic en **"Ingresar dinero"** y deposita un monto inicial para comenzar a operar.
+3.  **Invertir:** Haz clic en **"Hacer nueva inversión"**, selecciona una moneda y el monto a invertir.
+4.  **Retirar:** Haz clic en **"Retirar dinero"** para liquidar parte o la totalidad de una inversión de vuelta a tu saldo.
+5.  **Ver Historial:** Usa el botón **"Ver Historial"** en el Sidebar para revisar todas tus transacciones registradas.
+6.  **Cerrar Sesión:** Usa **"Cerrar Sesión"** en el Sidebar para limpiar los datos en memoria y permitir el ingreso de un nuevo usuario.

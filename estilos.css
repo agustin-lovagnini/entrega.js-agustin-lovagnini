@@ -44,7 +44,6 @@ ul {
 }
 
 /*!     ------ PANTALLAS PRINCIPALES ------      */
-
 #pantalla-inicio,
 #panel-general {
     width: 100%;
@@ -57,7 +56,6 @@ ul {
 }
 
 /*!     ------ BIENVENIDA ------      */
-
 .bienvenida-contenido {
     width: 550px;
     max-width: 90%;
@@ -173,7 +171,6 @@ ul {
 }
 
 /*!     ------ CONTENIDO GLOBAL ------      */
-
 .contenido {
     position: relative;
     padding-block: 50px;
@@ -265,7 +262,6 @@ ul {
 }
 
 /*!     ------ CCONTENIDO DE LOS BLOQUES (BOTONES E INVERSIONES) ------      */
-
 .contenedor-principal {
     display: flex;
     gap: 30px;
@@ -511,7 +507,6 @@ ul {
 }
 
 /*!     ------ HISTORIAL DE TRANSACCIONES ------      */
-
 #historialSection {
     width: 90%;
     max-width: 1000px;
